@@ -1,0 +1,75 @@
+﻿@page "/products"
+@using HiperShared.Model
+<h1> Produtos - Hiper </h1>
+<hr />
+<table width="100%" style="background:#05163D;color:honeydew">
+    <tr>
+        <td width="20">&nbsp;</td>
+        <td>
+            <h2>Cadastro de Produtos</h2>
+        </td>
+        <td>&nbsp;</td>
+        <td align="right">
+            <div class="row">
+                <div class="col-md-12">
+                    <a href="/product" class="btn btn-success">
+                        Criar Produto
+                    </a>
+                </div>
+            </div>
+            <br />
+        </td>
+    </tr>
+</table>
+<hr />
+
+
+<table width="100%" style="background:#0A2464;color:honeydew">
+    <tr>
+        <td width="20">&nbsp;</td>
+        <td>
+            <h2>Detalhes dos Produtos</h2>
+        </td>
+    </tr>
+    <tr>
+        <td colspan="2"></td>
+    </tr>
+</table>
+
+@if ( products == null)
+{
+    <p><em>Carregando...</em></p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>                
+                <th>Nome</th>
+                <th width="20">&nbsp;</th>
+                <th>Categoria</th>
+                <th>Preço</th>
+                <th>Descrição</th>
+                <th width="20">&nbsp;</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var prod in products)
+            {
+                <tr>
+                    <td>@prod.Name</td>
+                    <th><img src=@prod.Image></th>
+                    <td>@prod.Category</td>
+                    <td>@prod.Price</td>
+                    <td>@prod.Description</td>
+                    <td>
+                       <a href="@($"product/{prod.Id}")" class="btn btn-warning">
+                        Editar
+                        </a>                        
+                        <a @onclick="() => DeleteItem(prod.Id)" class="btn btn-danger">Deletar Produto</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}

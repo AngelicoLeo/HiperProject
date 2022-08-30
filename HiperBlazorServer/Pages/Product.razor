@@ -1,0 +1,47 @@
+﻿@page "/product"
+@page "/product/{Id}"
+
+<div class="row">
+    <div class="col-md-12">
+        @if(!String.IsNullOrEmpty(Id))
+        {
+                <h1>Details for @Item.Name</h1>
+        }       
+    </div>
+    <EditForm Model="@Item" OnValidSubmit="@HandleValidRequest" OnInvalidSubmit="HandleInvalidRequest">
+        <div class="form-group">
+            <label class="col-md-3">Nome</label>
+            <InputText class="col-md-8" @bind-Value="@Item.Name" id="Name"></InputText>
+        </div>
+        <div class="form-group">
+            <label class="col-md-3">Descrição</label>
+            <InputTextArea class="col-md-8" @bind-Value="@Item.Description" id="Description"></InputTextArea>
+        </div>
+        <div class="form-group">
+            <label class="col-md-3">Categoria</label>
+            <InputText class="col-md-8" @bind-Value="@Item.Category" id="Categoria"></InputText>
+        </div>
+        <div class="form-group">
+            <label class="col-md-3">Preço</label>
+            <InputNumber class="col-md-8" @bind-Value="@Item.Price" id="Price"></InputNumber>
+        </div>
+
+        <div class="form-group">
+            <label class="col-md-3">Imagem</label>
+            <InputFile class="col-md-8" @bind-Value="@Item.Image" id="Image"></InputFile>
+        </div>
+
+        <div class="form-group">
+            <button type="submit" class="btn btn-success">Salvar</button>
+            <a @onclick="@goToOverview" class="btn btn-primary">Voltar</a>
+            @if(!String.IsNullOrEmpty(Id))
+            {
+                <a @onclick="@DeleteItem" class="btn btn-danger">Deletar Produto</a>
+            }
+        </div>
+
+        <label>@Message</label>
+    </EditForm>
+
+    
+</div>
