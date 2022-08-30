@@ -1,0 +1,13 @@
+version: '3.4'
+
+services:
+  mongodb:
+    image: mongo
+
+  hipermicroservice:
+    image: ${DOCKER_REGISTRY-}hipermicroservice
+    build:
+      context: .
+      dockerfile: HiperMicroservice/Dockerfile
+volumes:
+  mongo_data: 
